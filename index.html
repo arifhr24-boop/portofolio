@@ -10,10 +10,10 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --cream:#f5f0e8; --cream2:#ede6d8; --sage:#4a7c6f; --sage-lt:#ddeee9; --sage-md:#b8d9d2;
-  --slate:#3d5a80; --slate-lt:#dde6f0; --gold:#9a7840; --gold-lt:#f5edd8;
-  --white:#ffffff; --text:#1c1a17; --muted:#6b6459; --border:#ddd7cc;
-  --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --radius:14px;
+  --cream:#fff8ec; --cream2:#fef0db; --sage:#aa0003; --sage-lt:#ffe6e6; --sage-md:#f3b8b8;
+  --slate:#d94a3d; --slate-lt:#ffe3df; --gold:#c2603a; --gold-lt:#ffe8db;
+  --grapefruit:#ff6b6b; --papaya:#ffedd5; --white:#ffffff; --text:#2b1a17; --muted:#8a6f63; --border:#f2e3d0;
+  --serif:'Lora',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --radius:20px; --radius-sm:14px;
 }
 html { scroll-behavior:smooth; }
 body { font-family:var(--sans); background:var(--cream); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
@@ -21,10 +21,11 @@ body { font-family:var(--sans); background:var(--cream); color:var(--text); line
 /* NAV */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
-  background:rgba(245,240,232,0.93); backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border); padding:0 52px; height:62px;
-  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(255,248,236,0.82); backdrop-filter:blur(18px) saturate(1.3);
+  border-bottom:1px solid var(--border); height:62px;
+  display:flex; align-items:center; justify-content:center;
 }
+.nav-inner { max-width:900px; width:100%; padding:0 52px; display:flex; align-items:center; justify-content:space-between; }
 .nav-name { font-family:var(--serif); font-size:16px; font-weight:600; color:var(--text); letter-spacing:-0.01em; }
 .nav-right { display:flex; align-items:center; gap:28px; }
 .nav-links { display:flex; gap:28px; }
@@ -45,49 +46,52 @@ nav {
 
 /* HERO */
 .hero-wrap {
-  background:linear-gradient(160deg,var(--sage) 0%,#3a6358 60%,#2e4f6e 100%);
-  padding:130px 52px 80px; position:relative; overflow:hidden;
+  background:radial-gradient(ellipse 90% 70% at 75% 30%, rgba(255,107,107,0.22) 0%, transparent 60%),
+             radial-gradient(ellipse 70% 60% at 10% 80%, rgba(255,237,213,0.6) 0%, transparent 55%),
+             linear-gradient(165deg, #fff8ec 0%, #fff2e0 100%);
+  padding:140px 0 88px; position:relative; overflow:hidden;
 }
 .hero-wrap::before {
-  content:''; position:absolute; inset:0;
-  background-image:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.07) 0%,transparent 50%),
-                   radial-gradient(circle at 10% 80%,rgba(255,255,255,0.05) 0%,transparent 40%);
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--sage) 0%, var(--grapefruit) 60%, var(--papaya) 100%);
   pointer-events:none;
 }
-.hero-wrap::after {
-  content:''; position:absolute; bottom:0; left:0; right:0; height:64px;
-  background:var(--cream); clip-path:ellipse(55% 100% at 50% 100%);
-}
-.hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+.hero-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; padding:0 52px; display:grid; grid-template-columns:1fr auto; gap:48px; align-items:start; }
+.hero-text { min-width:0; }
+.hero-photo { width:250px; height:250px; border-radius:50%; object-fit:cover; border:5px solid #fff; box-shadow:0 16px 50px rgba(170,0,3,0.18); }
+.hero-photo-wrap { position:relative; margin-top:4px; display:inline-block; line-height:0; }
 .hero-eyebrow {
   display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:500;
-  color:rgba(255,255,255,0.7); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:22px;
-  background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); padding:5px 14px; border-radius:99px;
+  color:var(--sage); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:22px;
+  background:var(--sage-lt); border:1px solid var(--sage-md); padding:5px 14px; border-radius:99px;
 }
-.hero-name { font-family:var(--serif); font-size:clamp(44px,6.5vw,72px); font-weight:600; line-height:1.05; letter-spacing:-0.025em; color:#fff; margin-bottom:18px; }
-.hero-role { font-size:17px; color:rgba(255,255,255,0.75); font-weight:300; margin-bottom:24px; font-style:italic; font-family:var(--serif); }
-.hero-desc { font-size:15px; color:rgba(255,255,255,0.68); max-width:500px; line-height:1.85; margin-bottom:36px; font-weight:300; }
+.hero-name { font-family:var(--serif); font-size:clamp(44px,6.5vw,72px); font-weight:600; line-height:1.05; letter-spacing:-0.025em; color:var(--text); margin-bottom:18px; }
+.hero-role { font-size:17px; color:var(--sage); font-weight:400; margin-bottom:24px; font-style:italic; font-family:var(--serif); }
+.hero-desc { font-size:15px; color:var(--muted); max-width:500px; line-height:1.85; margin-bottom:36px; font-weight:400; }
 .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
-.btn { font-size:13px; font-weight:500; padding:11px 26px; border-radius:99px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.18s; border:none; }
-.btn-hero { background:#fff; color:var(--sage); }
-.btn-hero:hover { background:var(--cream); transform:translateY(-1px); }
-.btn-hero-ghost { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3); }
-.btn-hero-ghost:hover { background:rgba(255,255,255,0.2); }
+.btn { font-size:13px; font-weight:500; padding:12px 28px; border-radius:99px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.25s cubic-bezier(0.22,1,0.36,1); border:none; }
+.btn-hero { background:var(--sage); color:#fff; }
+.btn-hero:hover { background:#c20407; transform:translateY(-2px); box-shadow:0 8px 22px rgba(170,0,3,0.25); }
+.btn-hero-ghost { background:transparent; color:var(--sage); border:1px solid var(--sage-md); }
+.btn-hero-ghost:hover { background:var(--sage-lt); border-color:var(--sage); }
 .btn-primary { background:var(--sage); color:#fff; }
-.btn-primary:hover { background:#3d6b5f; transform:translateY(-1px); }
+.btn-primary:hover { background:#c00407; transform:translateY(-1px); }
 
 /* STRENGTHS */
-.strengths { padding:56px 52px 48px; max-width:860px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-.strength-item { padding:24px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius); }
-.strength-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:17px; margin-bottom:12px; }
+.strengths-wrap { padding:56px 0 48px; }
+.strengths { max-width:900px; margin:0 auto; padding:0 52px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.strength-item { padding:26px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius); box-shadow:0 2px 10px rgba(200,90,50,0.05); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s; }
+.strength-item:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,90,50,0.1); }
+.strength-icon { width:42px; height:42px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:14px; }
 .si-sage{background:var(--sage-lt);} .si-slate{background:var(--slate-lt);} .si-gold{background:var(--gold-lt);}
 .strength-label { font-size:13px; font-weight:500; color:var(--text); margin-bottom:6px; }
 .strength-text { font-size:13px; color:var(--muted); line-height:1.65; font-weight:300; }
-.divider { max-width:860px; margin:0 auto; border:none; border-top:1px solid var(--border); }
+.divider { max-width:900px; margin:0 auto; border:none; border-top:1px solid var(--border); opacity:0.7; }
+.divider-wrap { padding:0 52px; }
 
 /* SECTIONS */
-section { padding:72px 52px; }
-.section-inner { max-width:860px; margin:0 auto; }
+section { padding:72px 0; }
+.section-inner { max-width:900px; margin:0 auto; padding:0 52px; }
 .section-label { font-size:11px; font-weight:500; color:var(--sage); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:28px; padding-bottom:14px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; }
 .section-label::before { content:''; display:block; width:20px; height:2px; background:var(--sage); border-radius:99px; }
 .section-title { font-family:var(--serif); font-size:30px; font-weight:600; letter-spacing:-0.015em; margin-bottom:8px; line-height:1.2; }
@@ -99,50 +103,57 @@ section { padding:72px 52px; }
 .skill-group { margin-bottom:22px; }
 .skill-group-title { font-size:11px; font-weight:500; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; }
 .skill-pills { display:flex; flex-wrap:wrap; gap:7px; }
-.skill-pill { font-size:12px; color:var(--text); background:var(--white); border:1px solid var(--border); border-radius:99px; padding:5px 13px; font-weight:400; }
+.skill-pill { font-size:12px; color:var(--text); background:var(--white); border:1px solid var(--border); border-radius:99px; padding:6px 14px; font-weight:400; transition:border-color 0.2s,color 0.2s; }
+.skill-pill:hover { border-color:var(--sage-md); color:var(--sage); }
 
 /* PROJECTS */
-.projects-bg { background:var(--cream2); }
+.projects-bg { background:linear-gradient(180deg,var(--cream) 0%,var(--cream2) 100%); }
 .projects-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:8px; }
-.project-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:28px; cursor:pointer; transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s; position:relative; overflow:hidden; }
-.project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:transparent; transition:background 0.2s; border-radius:var(--radius) var(--radius) 0 0; }
-.project-card:hover { box-shadow:0 6px 28px rgba(0,0,0,0.07); transform:translateY(-2px); }
-.project-card:hover::before { background:var(--sage); }
-.project-card.featured { grid-column:1/-1; background:linear-gradient(135deg,#f0f7f5 0%,#e8f2f8 100%); border-color:var(--sage-md); }
-.project-card.featured::before { background:var(--sage); }
-.project-card.other-projects { grid-column:1/-1; background:var(--cream); border:1px solid var(--border); cursor:default; }
+.project-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:30px; cursor:pointer; transition:border-color 0.3s ease,box-shadow 0.3s ease,transform 0.3s cubic-bezier(0.22,1,0.36,1); position:relative; overflow:hidden; box-shadow:0 1px 3px rgba(170,80,40,0.04); display:flex; flex-direction:column; }
+.project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:transparent; transition:opacity 0.3s; opacity:0; border-radius:var(--radius) var(--radius) 0 0; }
+.project-card:hover { box-shadow:0 12px 40px rgba(200,90,50,0.13); transform:translateY(-3px); border-color:var(--sage-md); }
+.project-card:hover::before { background:linear-gradient(90deg,var(--sage),var(--grapefruit)); opacity:1; }
+.project-card.featured { grid-column:1/-1; background:linear-gradient(135deg,#fff0ec 0%,#fff6ea 60%,#ffedd5 100%); border-color:var(--sage-md); }
+.project-card.featured .card-desc { flex-grow:0; }
+.project-card.featured::before { background:linear-gradient(90deg,var(--sage),var(--grapefruit)); opacity:1; }
+.project-card.other-projects { grid-column:1/-1; background:var(--cream); border:1px solid var(--border); cursor:default; display:block; }
 .project-card.other-projects:hover { transform:none; box-shadow:none; }
 .project-card.other-projects::before { display:none; }
 
 .card-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.card-top:has(> .badge:only-child) { justify-content:flex-end; }
+.card-top:has(> .card-badges:only-child) { justify-content:flex-end; }
 .card-org { font-size:11px; font-weight:500; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; }
-.badge { font-size:11px; font-weight:500; padding:3px 11px; border-radius:99px; }
+.badge { font-size:11px; font-weight:500; padding:4px 12px; border-radius:99px; }
 .badge-live { background:var(--sage-lt); color:var(--sage); }
 .badge-ongoing { background:var(--slate-lt); color:var(--slate); }
 .badge-done { background:var(--cream2); color:var(--muted); border:1px solid var(--border); }
 .badge-event { background:var(--gold-lt); color:var(--gold); }
+.badge-freelance { background:var(--papaya); color:var(--gold); border:1px solid #f0d9bf; }
+.card-badges { display:flex; gap:7px; align-items:center; }
 
 .card-title { font-family:var(--serif); font-size:18px; font-weight:600; letter-spacing:-0.01em; margin-bottom:9px; line-height:1.3; color:var(--text); }
-.card-desc { font-size:13px; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:18px; }
+.card-desc { font-size:13px; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:18px; flex-grow:1; }
 .card-meta { display:flex; gap:16px; font-size:12px; color:var(--muted); margin-bottom:16px; }
 .card-tags { display:flex; flex-wrap:wrap; gap:6px; }
-.card-tag { font-size:11px; color:var(--sage); background:var(--sage-lt); border-radius:4px; padding:3px 9px; font-weight:500; }
+.card-tag { font-size:11px; color:var(--sage); background:var(--sage-lt); border-radius:99px; padding:4px 11px; font-weight:500; }
 .card-link { display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--sage); font-weight:500; margin-top:14px; text-decoration:none; cursor:pointer; border:none; background:none; padding:0; }
 .card-link:hover { text-decoration:underline; }
 
 /* OTHER PROJECTS GRID */
 .other-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
-.other-item { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px; }
+.other-item { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-sm); padding:18px; box-shadow:0 1px 4px rgba(200,90,50,0.04); transition:transform 0.3s,box-shadow 0.3s; }
+.other-item:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(200,90,50,0.09); }
 .other-org { font-size:11px; color:var(--muted); margin-bottom:5px; text-transform:uppercase; letter-spacing:0.05em; }
 .other-title { font-size:14px; font-weight:600; font-family:var(--serif); margin-bottom:6px; line-height:1.3; }
 .other-desc { font-size:12px; color:var(--muted); line-height:1.6; }
 .other-tags { margin-top:10px; display:flex; gap:5px; flex-wrap:wrap; }
 
 /* MODAL */
-.modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(28,26,23,0.55); backdrop-filter:blur(5px); align-items:center; justify-content:center; padding:24px; }
+.modal-overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(43,26,23,0.45); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:24px; }
 .modal-overlay.open { display:flex; }
-.modal { background:var(--white); border-radius:var(--radius); border:1px solid var(--border); max-width:600px; width:100%; max-height:88vh; overflow-y:auto; padding:44px; position:relative; animation:fadeUp 0.25s ease; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.modal { background:var(--white); border-radius:var(--radius); border:1px solid var(--border); max-width:600px; width:100%; max-height:88vh; overflow-y:auto; padding:44px; position:relative; animation:fadeUp 0.35s cubic-bezier(0.22,1,0.36,1); box-shadow:0 24px 70px rgba(43,26,23,0.25); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px) scale(0.98)} to{opacity:1;transform:translateY(0) scale(1)} }
 .modal-close { position:absolute; top:18px; right:18px; background:var(--cream); border:1px solid var(--border); border-radius:99px; width:32px; height:32px; font-size:15px; cursor:pointer; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:background 0.15s; }
 .modal-close:hover { background:var(--cream2); }
 .modal-eyebrow { font-size:11px; font-weight:500; color:var(--sage); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
@@ -158,21 +169,23 @@ section { padding:72px 52px; }
 .modal-list li::before { content:'→'; color:var(--sage); flex-shrink:0; font-weight:500; }
 
 /* CONTACT */
-.contact-bg { background:linear-gradient(145deg,#3a6358 0%,#2e4f6e 100%); }
-.contact-inner { max-width:860px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:40px; }
+.contact-bg { background:radial-gradient(ellipse 80% 70% at 80% 20%, rgba(255,107,107,0.3) 0%, transparent 60%), linear-gradient(150deg,#aa0003 0%,#c2241f 55%,#d94a3d 100%); }
+.contact-bg.sec-pad { padding:72px 0; }
+.contact-inner { max-width:900px; margin:0 auto; padding:0 52px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:40px; }
 .contact-label { font-size:11px; font-weight:500; color:rgba(255,255,255,0.55); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
 .contact-label::before { content:''; display:block; width:20px; height:2px; background:rgba(255,255,255,0.4); border-radius:99px; }
 .contact-title { font-family:var(--serif); font-size:36px; font-weight:600; letter-spacing:-0.02em; line-height:1.15; color:#fff; max-width:360px; }
 .contact-sub { font-size:14px; color:rgba(255,255,255,0.6); font-weight:300; margin-top:14px; line-height:1.7; max-width:320px; }
-.contact-links { display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+.contact-links { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
 .contact-link { font-size:13px; color:rgba(255,255,255,0.75); text-decoration:none; display:flex; align-items:center; gap:10px; transition:color 0.15s; font-weight:300; }
 .contact-link:hover { color:#fff; }
 .contact-link-icon { width:34px; height:34px; border-radius:99px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:15px; }
 .btn-contact { margin-top:24px; display:inline-block; background:#fff; color:var(--sage); font-size:13px; font-weight:500; padding:12px 28px; border-radius:99px; text-decoration:none; transition:all 0.18s; }
-.btn-contact:hover { background:var(--cream); transform:translateY(-1px); }
+.btn-contact:hover { background:var(--cream); transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,0.18); }
 
 /* FOOTER */
-footer { padding:22px 52px; border-top:1px solid var(--border); background:var(--cream); display:flex; justify-content:space-between; align-items:center; }
+footer { padding:22px 0; border-top:1px solid var(--border); background:var(--cream); }
+.footer-inner { max-width:900px; margin:0 auto; padding:0 52px; display:flex; justify-content:space-between; align-items:center; }
 .footer-text { font-size:12px; color:var(--muted); font-weight:300; }
 
 /* ANIM */
@@ -182,13 +195,23 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 .hero-inner > *:nth-child(5){animation-delay:0.3s}
 
 /* RESPONSIVE */
+@media(max-width:960px) and (min-width:721px){
+  .hero-inner{gap:32px;}
+  .hero-photo{width:220px; height:220px;}
+}
 @media(max-width:720px){
-  nav{padding:0 20px;} .nav-links{display:none;}
-  .hero-wrap{padding:110px 20px 72px;} section{padding:52px 20px;}
+  .nav-inner{padding:0 20px;} .nav-links{display:none;}
+  .hero-inner{padding:0 20px; grid-template-columns:1fr; gap:28px; text-align:center;} section{padding:52px 0;}
+  .hero-photo{width:160px; height:160px; margin:0 auto;}
+  .hero-photo-wrap{order:-1; margin-top:0;}
+  .hero-eyebrow{margin-left:auto; margin-right:auto;}
+  .hero-desc{margin-left:auto; margin-right:auto;}
+  .hero-actions{justify-content:center;}
+  .section-inner{padding:0 20px;} .contact-inner{padding:0 20px;flex-direction:column;align-items:flex-start;}
   .about-grid{grid-template-columns:1fr;gap:36px;} .projects-grid{grid-template-columns:1fr;}
-  .project-card.featured{grid-column:1;} .strengths{grid-template-columns:1fr;padding:36px 20px;gap:14px;}
-  .other-grid{grid-template-columns:1fr;} .contact-inner{flex-direction:column;align-items:flex-start;}
-  .contact-links{align-items:flex-start;} footer{padding:18px 20px;flex-direction:column;gap:6px;text-align:center;}
+  .project-card.featured{grid-column:1;} .strengths{grid-template-columns:1fr;padding:0 20px;gap:14px;} .strengths-wrap{padding:36px 0;}
+  .other-grid{grid-template-columns:1fr;} .contact-links{align-items:flex-start;}
+  .footer-inner{padding:0 20px;flex-direction:column;gap:6px;text-align:center;}
   .nav-right{gap:12px;}
 }
 </style>
@@ -197,6 +220,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 
 <!-- NAV -->
 <nav>
+  <div class="nav-inner">
   <div class="nav-name">Arif Herdiansyah</div>
   <div class="nav-right">
     <div class="nav-links">
@@ -209,39 +233,48 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
       <button class="lang-btn" onclick="setLang('id')">ID</button>
     </div>
   </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero-wrap">
   <div class="hero-inner">
-    <div class="hero-eyebrow">IT Project Manager · System Analyst</div>
-    <h1 class="hero-name">Arif<br>Herdiansyah</h1>
-    <p class="hero-role" data-i18n="hero.role">Turning complex business needs into scalable, impactful systems.</p>
-    <p class="hero-desc" data-i18n="hero.desc">Enterprise system delivery specialist with experience across investment platforms, access management, and operational systems — working closely with PMO, Finance, and cross-functional teams.</p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn btn-hero" data-i18n="hero.cta1">View Projects</a>
-      <a href="#contact" class="btn btn-hero-ghost" data-i18n="hero.cta2">Get in Touch</a>
+    <div class="hero-text">
+      <div class="hero-eyebrow">IT Project Manager · System Analyst</div>
+      <h1 class="hero-name">Arif<br>Herdiansyah</h1>
+      <p class="hero-role" data-i18n="hero.role">I build systems that solve real business problems.</p>
+      <p class="hero-desc" data-i18n="hero.desc">IT Project Manager with hands-on experience delivering enterprise systems — from investment platforms and access management to operational tools. I work across PMO, Finance, and tech teams to get things built and shipped.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-hero" data-i18n="hero.cta1">See My Work</a>
+        <a href="https://wa.me/+628973334804" target="_blank" class="btn btn-hero-ghost" data-i18n="hero.cta2">Chat on WhatsApp</a>
+        <a href="CV-Arif-Herdiansyah.pdf" download class="btn btn-hero-ghost" data-i18n="hero.cta3">Download CV</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="profile-large.jpg" alt="Arif Herdiansyah" class="hero-photo">
     </div>
   </div>
 </div>
 
 <!-- STRENGTHS -->
+<div class="strengths-wrap">
 <div class="strengths">
   <div class="strength-item">
     <div class="strength-icon si-sage">🎯</div>
     <div class="strength-label" data-i18n="str1.title">Business → System</div>
-    <div class="strength-text" data-i18n="str1.text">Translating business requirements into structured, executable system features.</div>
+    <div class="strength-text" data-i18n="str1.text">I translate messy business needs into clear, buildable system features.</div>
   </div>
   <div class="strength-item">
     <div class="strength-icon si-slate">🤝</div>
-    <div class="strength-label" data-i18n="str2.title">Stakeholder Management</div>
-    <div class="strength-text" data-i18n="str2.text">Managing cross-functional teams spanning PMO, Finance, and operations.</div>
+    <div class="strength-label" data-i18n="str2.title">Aligning People</div>
+    <div class="strength-text" data-i18n="str2.text">I make sure teams from different sides — business, finance, and operations — share the same understanding, so projects don't stall.</div>
   </div>
   <div class="strength-item">
     <div class="strength-icon si-gold">📈</div>
     <div class="strength-label" data-i18n="str3.title">Delivery & Impact</div>
-    <div class="strength-text" data-i18n="str3.text">Ensuring systems are not just launched — but adopted and deliver real impact.</div>
+    <div class="strength-text" data-i18n="str3.text">I care about systems that get used, not just systems that get launched.</div>
   </div>
+</div>
 </div>
 <hr class="divider">
 
@@ -251,11 +284,11 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
     <div class="section-label" data-i18n="about.label">About</div>
     <div class="about-grid">
       <div>
-        <h2 class="section-title" data-i18n="about.title">I think in systems,<br>not just tasks.</h2>
+        <h2 class="section-title" data-i18n="about.title">Systems thinker.<br>Not a task ticker.</h2>
         <div class="about-body">
-          <p data-i18n="about.p1">I am an IT Project Manager focused on enterprise systems — from requirements gathering to full rollout. My approach always starts with understanding the business problem in depth before determining the technical solution.</p>
-          <p data-i18n="about.p2">I have led projects across large enterprise organizations, covering investment platforms, access management, document workflows, and KPI monitoring systems.</p>
-          <p data-i18n="about.p3">My goal is always the same: deliver systems that are genuinely used and create measurable impact — not just complete deliverables on paper.</p>
+          <p data-i18n="about.p1">I'm an IT Project Manager who works on enterprise systems end-to-end — from the first requirements session to go-live. I start every project by understanding the real business problem, not just the feature list.</p>
+          <p data-i18n="about.p2">I've worked on investment platforms, access management, document workflows, and KPI systems — mostly in large organizations where getting alignment is half the battle.</p>
+          <p data-i18n="about.p3">What I care about: systems that people actually use, not just ones that technically exist.</p>
         </div>
       </div>
       <div>
@@ -276,8 +309,8 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
         <div class="skill-group">
           <div class="skill-group-title" data-i18n="skill.tech">Technical</div>
           <div class="skill-pills">
-            <span class="skill-pill">SQL</span><span class="skill-pill">API Integration</span>
             <span class="skill-pill">System Flow</span><span class="skill-pill">Documentation</span>
+            <span class="skill-pill">Requirement Analysis</span>
           </div>
         </div>
         <div class="skill-group">
@@ -295,33 +328,35 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 <!-- PROJECTS -->
 <section id="projects" class="projects-bg">
   <div class="section-inner">
-    <div class="section-label" data-i18n="proj.label">Project Experience</div>
+    <div class="section-label" data-i18n="proj.label">Projects</div>
     <div class="projects-grid">
 
       <!-- ── LIVE ── -->
       <div class="project-card featured" onclick="openModal(0)">
         <div class="card-top">
           <div class="card-org">Angkasa Pura Indonesia</div>
-          <span class="badge badge-live" data-i18n="badge.live">● Active</span>
+          <span class="badge badge-live" data-i18n="badge.live">● Live</span>
         </div>
         <div class="card-title">FAMILIA Single Sign-On Platform</div>
-        <div class="card-desc" data-i18n="p0.desc">A centralized SSO gateway that unifies access to all internal applications — single entry point, role-based access control, and centralized governance, eliminating the fragmented multi-login experience.</div>
+        <div class="card-desc" data-i18n="p0.desc">Built a single SSO gateway to replace the mess of multiple logins across internal apps. One entry point, role-based access, centralized control.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">SSO</span><span class="card-tag">RBAC</span>
           <span class="card-tag">Access Management</span><span class="card-tag">Enterprise</span><span class="card-tag">UAT</span>
         </div>
-        <button class="card-link" onclick="event.stopPropagation();openModal(0)" data-i18n="readmore">Read more →</button>
+        <button class="card-link" onclick="event.stopPropagation();openModal(0)" data-i18n="readmore">Full breakdown →</button>
       </div>
 
       <!-- ── ONGOING ── -->
       <div class="project-card" onclick="openModal(6)">
         <div class="card-top">
-          <div class="card-org">PT. Kreasi Teknodigital Indonesia</div>
-          <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          <div class="card-badges">
+            <span class="badge badge-freelance" data-i18n="badge.freelance">Freelance</span>
+            <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          </div>
         </div>
-        <div class="card-title" data-i18n="p6.title">Mumble — Anonymous Chat Platform</div>
-        <div class="card-desc" data-i18n="p6.desc">End-to-end project delivery for an identity-free social mobile app — from product scoping and SOW to system flows, wireframes, and milestone roadmap. Built entirely from scratch.</div>
+        <div class="card-title" data-i18n="p6.title">Mumble — Anonymous Chat App</div>
+        <div class="card-desc" data-i18n="p6.desc">Client came in with just an idea — no system, no docs, nothing. I built the foundation: product vision, SOW, system flows, and a phased delivery roadmap.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">Product Scoping</span><span class="card-tag">SOW</span>
@@ -331,11 +366,13 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 
       <div class="project-card" onclick="openModal(7)">
         <div class="card-top">
-          <div class="card-org">PT. Kreasi Teknodigital Indonesia</div>
-          <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          <div class="card-badges">
+            <span class="badge badge-freelance" data-i18n="badge.freelance">Freelance</span>
+            <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          </div>
         </div>
         <div class="card-title" data-i18n="p7.title">Tokoperasi — Hyperlocal UMKM Marketplace</div>
-        <div class="card-desc" data-i18n="p7.desc">Led planning and system analysis for a hyperlocal marketplace connecting buyers with nearby UMKM sellers — covering 12 modules for transactions, delivery, and administration.</div>
+        <div class="card-desc" data-i18n="p7.desc">UMKM transactions were still largely manual. Planned the full system from scratch — covering how buyers find nearby sellers, check out, pay, and get their orders delivered.</div>
         <div class="card-meta"><span>🎯 Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">Hyperlocal</span><span class="card-tag">UMKM</span>
@@ -345,11 +382,13 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 
       <div class="project-card" onclick="openModal(8)">
         <div class="card-top">
-          <div class="card-org">PT. Kreasi Teknodigital Indonesia</div>
-          <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          <div class="card-badges">
+            <span class="badge badge-freelance" data-i18n="badge.freelance">Freelance</span>
+            <span class="badge badge-ongoing" data-i18n="badge.ongoing">In Progress</span>
+          </div>
         </div>
         <div class="card-title" data-i18n="p8.title">Geoaccess LMS — Platform Redesign</div>
-        <div class="card-desc" data-i18n="p8.desc">Led full planning and documentation for a geoscience LMS redesign — 12-module feature analysis, 13 add-on features, SOW, 16-week roadmap, and guest checkout conversion flow overhaul.</div>
+        <div class="card-desc" data-i18n="p8.desc">The platform had real conversion problems — buying required logging in first, post-payment was all manual. Led the full planning overhaul: feature analysis, SOW, and a smoother checkout flow.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">LMS</span><span class="card-tag">Business Analysis</span>
@@ -364,7 +403,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <span class="badge badge-done" data-i18n="badge.done">Completed</span>
         </div>
         <div class="card-title">Investment Information System</div>
-        <div class="card-desc" data-i18n="p1.desc">An enterprise investment monitoring system consolidating portfolio data across subholdings to support accurate and reliable executive decision-making.</div>
+        <div class="card-desc" data-i18n="p1.desc">Investment data was scattered across subholdings and nobody had a clear picture. Built a monitoring system that fixed that — cleaner data, better executive reporting.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">Investment</span><span class="card-tag">BI Dashboard</span>
@@ -378,7 +417,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <span class="badge badge-done" data-i18n="badge.done">Completed</span>
         </div>
         <div class="card-title">Culture Management System</div>
-        <div class="card-desc" data-i18n="p2.desc">A centralized platform for managing cultural programs across all branches, equipped with multi-level approval workflows and structured HR reporting.</div>
+        <div class="card-desc" data-i18n="p2.desc">Cultural programs were managed manually per branch — no unified view. Built a platform to centralize submissions, approvals, and reporting in one place.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">HR System</span><span class="card-tag">Workflow</span><span class="card-tag">Multi-branch</span>
@@ -391,7 +430,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <span class="badge badge-done" data-i18n="badge.done">Completed</span>
         </div>
         <div class="card-title">Monitoring & Evaluation System</div>
-        <div class="card-desc" data-i18n="p3.desc">A KPI tracking and ROI reporting system to standardize financial evaluation and improve the accuracy of project performance monitoring.</div>
+        <div class="card-desc" data-i18n="p3.desc">KPI tracking was done manually and inconsistently. Built a structured system so leadership always has an accurate, up-to-date view of project performance and ROI.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">KPI</span><span class="card-tag">ROI Reporting</span><span class="card-tag">Finance</span>
@@ -404,7 +443,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <span class="badge badge-done" data-i18n="badge.done">Completed</span>
         </div>
         <div class="card-title">Naskah Dinas System</div>
-        <div class="card-desc" data-i18n="p4.desc">A document management and approval system aligned with compliance standards — structured workflows, audit trails, and improved document traceability.</div>
+        <div class="card-desc" data-i18n="p4.desc">Official documents were handled manually — slow, prone to errors, hard to trace. Built a digital system with structured approval flows and full audit trail.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">Document Management</span><span class="card-tag">Compliance</span><span class="card-tag">Audit Trail</span>
@@ -417,7 +456,7 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <span class="badge badge-done" data-i18n="badge.done">Completed</span>
         </div>
         <div class="card-title">DevOps Platform (Initial Phase)</div>
-        <div class="card-desc" data-i18n="p5.desc">An initial DevOps platform establishing the foundation for structured project lifecycle management — covering standard documentation (KOM, Charter, PIR) and payment processes.</div>
+        <div class="card-desc" data-i18n="p5.desc">Set up the foundational DevOps platform — standardized project docs (KOM, Charter, PIR) and payment tracking. Groundwork for bigger automation later.</div>
         <div class="card-meta"><span>🎯 IT Project Manager</span></div>
         <div class="card-tags">
           <span class="card-tag">DevOps</span><span class="card-tag">Lifecycle Tracking</span><span class="card-tag">Documentation</span>
@@ -433,19 +472,19 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
           <div class="other-item">
             <div class="other-org">Mandiri</div>
             <div class="other-title">Mandiri Investment Forum 2024</div>
-            <div class="other-desc" data-i18n="ev1.desc">Operational and technology coordination for a large-scale national investment forum.</div>
+            <div class="other-desc" data-i18n="ev1.desc">Handled ops and tech coordination for a large-scale national investment forum.</div>
             <div class="other-tags"><span class="card-tag">Event</span><span class="card-tag">Operations</span></div>
           </div>
           <div class="other-item">
             <div class="other-org">ITS</div>
             <div class="other-title">ITS Asian Pacific Forum 2024</div>
-            <div class="other-desc" data-i18n="ev2.desc">Led event technology implementation and ensured system readiness throughout execution.</div>
+            <div class="other-desc" data-i18n="ev2.desc">Led event tech setup and made sure everything was running before and during the forum.</div>
             <div class="other-tags"><span class="card-tag">Event Tech</span><span class="card-tag">Coordination</span></div>
           </div>
           <div class="other-item">
             <div class="other-org">BCA</div>
             <div class="other-title">BCA Expoversary 2023</div>
-            <div class="other-desc" data-i18n="ev3.desc">IT and operational coordination to support event systems and ensure smooth execution.</div>
+            <div class="other-desc" data-i18n="ev3.desc">Managed IT and operational coordination from setup to execution.</div>
             <div class="other-tags"><span class="card-tag">IT Coord</span><span class="card-tag">Operations</span></div>
           </div>
         </div>
@@ -460,9 +499,9 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
   <div class="contact-inner">
     <div>
       <div class="contact-label" data-i18n="contact.label">Contact</div>
-      <div class="contact-title" data-i18n="contact.title">Open for new opportunities.</div>
-      <p class="contact-sub" data-i18n="contact.sub">Available for IT Project Management, Product, or System-related roles. Jakarta / Remote.</p>
-      <a href="https://wa.me/+628973334804" target="_blank" class="btn-contact" data-i18n="contact.btn">Contact via WhatsApp</a>
+      <div class="contact-title" data-i18n="contact.title">Got a project? Let's talk.</div>
+      <p class="contact-sub" data-i18n="contact.sub">Open to IT Project Management, Product, or System roles. Jakarta / Remote.</p>
+      <a href="https://wa.me/+628973334804" target="_blank" class="btn-contact" data-i18n="contact.btn">Chat on WhatsApp</a>
     </div>
     <div class="contact-links">
       <a href="mailto:herdiansyaharip@gmail.com" class="contact-link">
@@ -479,8 +518,10 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 </section>
 
 <footer>
-  <div class="footer-text">© 2026 Arif Herdiansyah</div>
-  <div class="footer-text">IT Project Manager · Jakarta, Indonesia</div>
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 Arif Herdiansyah</div>
+    <div class="footer-text">IT Project Manager · Jakarta, Indonesia</div>
+  </div>
 </footer>
 
 <!-- MODAL -->
@@ -510,79 +551,79 @@ footer { padding:22px 52px; border-top:1px solid var(--border); background:var(-
 const i18n = {
   en: {
     'nav.about':'About','nav.projects':'Projects','nav.contact':'Contact',
-    'hero.role':'Turning complex business needs into scalable, impactful systems.',
-    'hero.desc':'Enterprise system delivery specialist with experience across investment platforms, access management, and operational systems — working closely with PMO, Finance, and cross-functional teams.',
-    'hero.cta1':'View Projects','hero.cta2':'Get in Touch',
-    'str1.title':'Business → System','str1.text':'Translating business requirements into structured, executable system features.',
-    'str2.title':'Stakeholder Management','str2.text':'Managing cross-functional teams spanning PMO, Finance, and operations.',
-    'str3.title':'Delivery & Impact','str3.text':'Ensuring systems are not just launched — but adopted and deliver real impact.',
+    'hero.role':'I build systems that solve real business problems.',
+    'hero.desc':'IT Project Manager with hands-on experience delivering enterprise systems — from investment platforms and access management to operational tools. I work across PMO, Finance, and tech teams to get things built and shipped.',
+    'hero.cta1':'See My Work','hero.cta2':'Chat on WhatsApp','hero.cta3':'Download CV',
+    'str1.title':'Business → System','str1.text':'I translate messy business needs into clear, buildable system features.',
+    'str2.title':'Aligning People','str2.text':'I make sure teams from different sides — business, finance, and operations — share the same understanding, so projects don\'t stall.',
+    'str3.title':'Delivery & Impact','str3.text':'I care about systems that get used, not just systems that get launched.',
     'about.label':'About',
-    'about.title':'I think in systems,<br>not just tasks.',
-    'about.p1':'I am an IT Project Manager focused on enterprise systems — from requirements gathering to full rollout. My approach always starts with understanding the business problem in depth before determining the technical solution.',
-    'about.p2':'I have led projects across large enterprise organizations, covering investment platforms, access management, document workflows, and KPI monitoring systems.',
-    'about.p3':'My goal is always the same: deliver systems that are genuinely used and create measurable impact — not just complete deliverables on paper.',
+    'about.title':'Systems thinker.<br>Not a task ticker.',
+    'about.p1':'I\'m an IT Project Manager who works on enterprise systems end-to-end — from the first requirements session to go-live. I start every project by understanding the real business problem, not just the feature list.',
+    'about.p2':'I\'ve worked on investment platforms, access management, document workflows, and KPI systems — mostly in large organizations where getting alignment is half the battle.',
+    'about.p3':'What I care about: systems that people actually use, not just ones that technically exist.',
     'skill.pm':'Project Management','skill.tools':'Tools','skill.tech':'Technical','skill.soft':'Soft Skills',
-    'proj.label':'Project Experience',
-    'badge.live':'● Active','badge.ongoing':'In Progress','badge.done':'Completed',
-    'readmore':'Read more →',
-    'p0.desc':'A centralized SSO gateway that unifies access to all internal applications — single entry point, role-based access control, and centralized governance, eliminating the fragmented multi-login experience.',
-    'p1.desc':'An enterprise investment monitoring system consolidating portfolio data across subholdings to support accurate and reliable executive decision-making.',
-    'p2.desc':'A centralized platform for managing cultural programs across all branches, equipped with multi-level approval workflows and structured HR reporting.',
-    'p3.desc':'A KPI tracking and ROI reporting system to standardize financial evaluation and improve the accuracy of project performance monitoring.',
-    'p4.desc':'A document management and approval system aligned with compliance standards — structured workflows, audit trails, and improved document traceability.',
-    'p5.desc':'An initial DevOps platform establishing the foundation for structured project lifecycle management — covering standard documentation (KOM, Charter, PIR) and payment processes.',
-    'p6.title':'Mumble — Anonymous Chat Platform',
-    'p6.desc':'End-to-end project delivery for an identity-free social mobile app — from product scoping and SOW to system flows, wireframes, and milestone roadmap. Built entirely from scratch.',
+    'proj.label':'Projects',
+    'badge.live':'● Live','badge.ongoing':'In Progress','badge.done':'Done','badge.freelance':'Freelance',
+    'readmore':'Full breakdown →',
+    'p0.desc':'Built a single SSO gateway to replace the mess of multiple logins across internal apps. One entry point, role-based access, centralized control.',
+    'p1.desc':'Investment data was scattered across subholdings and nobody had a clear picture. Built a monitoring system that fixed that — cleaner data, better executive reporting.',
+    'p2.desc':'Digitized the management of cultural programs across all branches — multi-level approvals, submission tracking, and reporting in one place.',
+    'p3.desc':'Replaced manual KPI tracking with a structured system for ROI reporting and project performance — less guesswork, more accuracy.',
+    'p4.desc':'Moved official document handling from manual to digital — structured approval flows, audit trails, full traceability.',
+    'p5.desc':'Set up the initial DevOps platform: standardized documentation (KOM, Charter, PIR) and payment tracking. Foundation for bigger automation down the line.',
+    'p6.title':'Mumble — Anonymous Chat App',
+    'p6.desc':'Built the foundation from zero — product vision, SOW, system flows, and a phased delivery roadmap. No existing system, no prior documentation.',
     'p7.title':'Tokoperasi — Hyperlocal UMKM Marketplace',
-    'p7.desc':'Led planning and system analysis for a hyperlocal marketplace connecting buyers with nearby UMKM sellers — covering 12 modules for transactions, delivery, and administration.',
+    'p7.desc':'Planned and analyzed a hyperlocal marketplace from scratch — covering transactions, delivery, and admin, with GPS-based store discovery.',
     'p8.title':'Geoaccess LMS — Platform Redesign',
-    'p8.desc':'Led full planning and documentation for a geoscience LMS redesign — 12-module feature analysis, 13 add-on features, SOW, 16-week roadmap, and guest checkout conversion flow overhaul.',
+    'p8.desc':'Overhauled the platform planning and docs — feature analysis, add-on features, full SOW, a delivery roadmap, and a smoother guest checkout flow to fix the conversion drop.',
     'other.label':'Other Projects',
-    'ev1.desc':'Operational and technology coordination for a large-scale national investment forum.',
-    'ev2.desc':'Led event technology implementation and ensured system readiness throughout execution.',
-    'ev3.desc':'IT and operational coordination to support event systems and ensure smooth execution.',
-    'contact.label':'Contact','contact.title':'Open for new opportunities.',
-    'contact.sub':'Available for IT Project Management, Product, or System-related roles. Jakarta / Remote.',
-    'contact.btn':'Contact via WhatsApp',
-    'modal.contrib':'My Contributions','modal.impact':'Result & Impact','modal.focus':'Focus Areas',
+    'ev1.desc':'Handled ops and tech coordination for a large-scale national investment forum.',
+    'ev2.desc':'Led event tech setup and made sure everything was running before and during the forum.',
+    'ev3.desc':'Managed IT and operational coordination for the event from setup to execution.',
+    'contact.label':'Contact','contact.title':'Got a project? Let\'s talk.',
+    'contact.sub':'Open to IT Project Management, Product, or System roles. Jakarta / Remote.',
+    'contact.btn':'Chat on WhatsApp',
+    'modal.contrib':'What I Did','modal.impact':'What Changed','modal.focus':'Focus Areas',
   },
   id: {
     'nav.about':'Tentang','nav.projects':'Project','nav.contact':'Kontak',
-    'hero.role':'Mengubah kebutuhan bisnis yang kompleks menjadi sistem yang terukur dan berdampak.',
-    'hero.desc':'Spesialis pengiriman sistem enterprise dengan pengalaman di platform investasi, manajemen akses, dan sistem operasional — bekerja erat bersama tim PMO, Keuangan, dan lintas fungsi.',
-    'hero.cta1':'Lihat Project','hero.cta2':'Hubungi Saya',
-    'str1.title':'Bisnis → Sistem','str1.text':'Menerjemahkan kebutuhan bisnis menjadi fitur sistem yang terstruktur dan dapat dieksekusi.',
-    'str2.title':'Manajemen Pemangku Kepentingan','str2.text':'Mengelola tim lintas fungsi yang melibatkan PMO, Keuangan, dan tim operasional.',
-    'str3.title':'Pengiriman & Dampak','str3.text':'Memastikan sistem tidak sekadar diluncurkan, tetapi benar-benar digunakan dan memberikan dampak nyata.',
-    'about.label':'Tentang Saya',
-    'about.title':'Saya berpikir dalam sistem,<br>bukan sekadar tugas.',
-    'about.p1':'Saya adalah IT Project Manager yang berfokus pada sistem enterprise — mulai dari pengumpulan kebutuhan hingga peluncuran penuh. Pendekatan saya selalu dimulai dari memahami masalah bisnis secara mendalam sebelum menentukan solusi teknis.',
-    'about.p2':'Saya telah memimpin berbagai proyek di organisasi enterprise berskala besar, mencakup platform investasi, manajemen akses, alur dokumen, dan sistem pemantauan KPI.',
-    'about.p3':'Tujuan saya selalu sama: menghadirkan sistem yang benar-benar digunakan dan memberikan dampak nyata — bukan sekadar menyelesaikan pekerjaan di atas kertas.',
-    'skill.pm':'Manajemen Proyek','skill.tools':'Alat & Tools','skill.tech':'Teknikal','skill.soft':'Keterampilan Interpersonal',
-    'proj.label':'Pengalaman Project',
-    'badge.live':'● Aktif','badge.ongoing':'Berlangsung','badge.done':'Selesai',
-    'readmore':'Baca selengkapnya →',
-    'p0.desc':'Platform SSO terpusat yang menyatukan akses ke seluruh aplikasi internal — satu titik masuk, kontrol akses berbasis peran, dan tata kelola tersentralisasi, menghapus pengalaman multi-login yang terfragmentasi.',
-    'p1.desc':'Sistem pemantauan investasi enterprise yang mengonsolidasikan data portofolio lintas subholding untuk mendukung pengambilan keputusan eksekutif yang akurat dan andal.',
-    'p2.desc':'Platform terpusat untuk mengelola program budaya perusahaan lintas seluruh cabang, dilengkapi alur persetujuan bertingkat dan pelaporan kegiatan SDM yang terstruktur.',
-    'p3.desc':'Sistem pelacakan KPI dan pelaporan ROI untuk menstandarisasi evaluasi keuangan dan meningkatkan akurasi pemantauan kinerja proyek.',
-    'p4.desc':'Sistem manajemen dokumen dan persetujuan yang sesuai standar kepatuhan — alur kerja terstruktur, jejak audit, dan keterlacakan dokumen yang lebih baik.',
-    'p5.desc':'Platform DevOps awal sebagai fondasi manajemen siklus hidup proyek yang terstruktur — mencakup dokumentasi standar (KOM, Project Charter, PIR) dan proses pembayaran.',
-    'p6.title':'Mumble — Platform Chat Anonim',
-    'p6.desc':'Pengiriman proyek end-to-end untuk aplikasi mobile sosial tanpa identitas — mulai dari pendefinisian produk, SOW, alur sistem, wireframe, hingga peta jalan milestone. Dibangun dari nol tanpa arsitektur yang ada sebelumnya.',
-    'p7.title':'Tokoperasi — Marketplace UMKM Hyperlokal',
-    'p7.desc':'Memimpin perencanaan dan analisis sistem untuk marketplace hyperlokal yang menghubungkan pembeli dengan penjual UMKM terdekat — mencakup 12 modul untuk transaksi, pengiriman, dan administrasi.',
-    'p8.title':'Geoaccess LMS — Redesain Platform',
-    'p8.desc':'Memimpin perencanaan dan dokumentasi lengkap untuk redesain platform LMS geosains — analisis fitur 12 modul, 13 fitur tambahan, SOW, peta jalan 16 minggu, dan pembenahan alur pembelian menjadi guest checkout.',
+    'hero.role':'Saya bantu bisnis berkembang lewat sistem yang tepat sasaran.',
+    'hero.desc':'IT Project Manager dengan pengalaman langsung menangani sistem skala besar — mulai dari platform investasi, manajemen akses, sampai aplikasi operasional. Saya terbiasa bekerja bersama tim PMO, Keuangan, dan teknis untuk memastikan sistem benar-benar jadi dan berjalan.',
+    'hero.cta1':'Lihat Project','hero.cta2':'Chat via WhatsApp','hero.cta3':'Unduh CV',
+    'str1.title':'Dari Bisnis ke Sistem','str1.text':'Saya ubah kebutuhan bisnis yang rumit menjadi fitur sistem yang jelas dan siap dibangun.',
+    'str2.title':'Menyatukan Banyak Pihak','str2.text':'Saya memastikan tim dari berbagai bagian — bisnis, keuangan, dan operasional — punya pemahaman yang sama, supaya project tidak berhenti di tengah jalan.',
+    'str3.title':'Hasil yang Nyata','str3.text':'Buat saya yang penting sistemnya dipakai orang, bukan cuma selesai dibuat.',
+    'about.label':'Tentang',
+    'about.title':'Memahami sistemnya,<br>bukan sekadar mengerjakan tugas.',
+    'about.p1':'Saya seorang IT Project Manager yang menangani sistem skala besar dari awal sampai siap dipakai. Setiap project selalu saya mulai dengan memahami masalah bisnisnya dulu, sebelum menentukan solusinya.',
+    'about.p2':'Saya pernah menangani platform investasi, manajemen akses, alur dokumen, dan sistem KPI. Kebanyakan di organisasi besar, di mana menyatukan banyak tim jadi tantangan tersendiri.',
+    'about.p3':'Yang saya kejar adalah sistem yang benar-benar dipakai, bukan yang hanya selesai di atas kertas.',
+    'skill.pm':'Manajemen Proyek','skill.tools':'Tools','skill.tech':'Teknikal','skill.soft':'Soft Skills',
+    'proj.label':'Project',
+    'badge.live':'● Aktif','badge.ongoing':'Berjalan','badge.done':'Selesai','badge.freelance':'Freelance',
+    'readmore':'Lihat detail →',
+    'p0.desc':'Membangun satu gerbang SSO untuk menggantikan ribetnya login terpisah di tiap aplikasi internal. Satu pintu masuk, akses sesuai peran, dan kontrol yang terpusat.',
+    'p1.desc':'Data investasi tersebar di banyak anak perusahaan dan tidak ada yang punya gambaran utuh. Saya bangun sistem pemantauan yang merapikan itu, sehingga data lebih rapi dan laporan untuk pimpinan lebih akurat.',
+    'p2.desc':'Program budaya perusahaan masih dikelola manual dan terpisah di tiap cabang. Saya bangun platform yang menyatukan pengajuan, persetujuan, dan pelaporan dalam satu tempat.',
+    'p3.desc':'Pemantauan KPI masih manual dan kurang konsisten. Saya bangun sistem yang lebih rapi, supaya pimpinan selalu punya gambaran akurat soal kinerja proyek dan hasilnya.',
+    'p4.desc':'Dokumen resmi diurus manual — lambat, rawan salah, dan sulit dilacak. Saya bangun sistem digital dengan alur persetujuan yang jelas dan riwayat yang lengkap.',
+    'p5.desc':'Menyiapkan platform DevOps tahap awal: merapikan dokumentasi proyek (KOM, Charter, PIR) dan pencatatan pembayaran. Jadi fondasi untuk otomasi yang lebih besar nantinya.',
+    'p6.title':'Mumble — Aplikasi Chat Anonim',
+    'p6.desc':'Klien datang hanya dengan ide, tanpa sistem maupun dokumen apa pun. Saya susun fondasinya: konsep produk, dokumen kerja, alur sistem, dan rencana pengerjaan secara bertahap.',
+    'p7.title':'Tokoperasi — Marketplace UMKM Lokal',
+    'p7.desc':'Transaksi UMKM masih banyak yang manual. Saya rancang sistemnya dari nol, mengatur cara pembeli menemukan penjual terdekat, belanja, bayar, sampai pesanan diterima.',
+    'p8.title':'Geoaccess LMS — Perombakan Platform',
+    'p8.desc':'Saya pimpin perencanaan dan dokumentasi untuk merombak platform belajar geosains ini — mulai dari analisis fitur, fitur tambahan, dokumen kerja, rencana pengerjaan, sampai perbaikan alur pembelian agar lebih mudah.',
     'other.label':'Project Lainnya',
-    'ev1.desc':'Koordinasi operasional dan teknologi untuk forum investasi nasional berskala besar.',
-    'ev2.desc':'Memimpin implementasi teknologi acara dan memastikan kesiapan sistem selama pelaksanaan.',
-    'ev3.desc':'Koordinasi IT dan operasional untuk mendukung sistem serta kelancaran pelaksanaan acara.',
-    'contact.label':'Kontak','contact.title':'Terbuka untuk peluang baru.',
-    'contact.sub':'Terbuka untuk peran IT Project Management, Produk, atau posisi terkait sistem. Jakarta / Remote.',
+    'ev1.desc':'Mengurus koordinasi operasional dan teknologi untuk forum investasi nasional berskala besar.',
+    'ev2.desc':'Memimpin penyiapan teknologi acara dan memastikan semuanya siap selama acara berlangsung.',
+    'ev3.desc':'Mengurus koordinasi IT dan operasional, dari persiapan sampai acara selesai.',
+    'contact.label':'Kontak','contact.title':'Ada project? Yuk ngobrol.',
+    'contact.sub':'Terbuka untuk peran IT Project Management, Produk, atau yang berkaitan dengan sistem. Jakarta / Remote.',
     'contact.btn':'Hubungi via WhatsApp',
-    'modal.contrib':'Kontribusi Saya','modal.impact':'Hasil & Dampak','modal.focus':'Fokus Area',
+    'modal.contrib':'Yang Saya Kerjakan','modal.impact':'Hasilnya','modal.focus':'Fokus Area',
   }
 };
 
@@ -593,15 +634,15 @@ const data = [
     title: 'FAMILIA Single Sign-On Platform',
     desc: {
       en:'Angkasa Pura operates dozens of internal applications, each requiring separate logins. I led the development of FAMILIA — a centralized SSO platform acting as a unified access gateway. I approached this not as a login problem, but as a system access and governance challenge.',
-      id:'Angkasa Pura mengoperasikan puluhan aplikasi internal yang masing-masing memerlukan login terpisah. Saya memimpin pengembangan FAMILIA — platform SSO terpusat sebagai gateway akses tunggal. Saya mendekati ini bukan sebagai masalah login, melainkan sebagai tantangan akses sistem dan tata kelola.'
+      id:'Angkasa Pura punya puluhan aplikasi internal yang masing-masing butuh login sendiri. Saya memimpin pembuatan FAMILIA, satu pintu masuk untuk semua aplikasi itu. Saya melihat ini bukan sekadar soal login, tapi soal mengatur akses dan tata kelolanya.'
     },
     contributions: {
-      en:['Defined product vision and system architecture approach','Gathered and translated business requirements into system features','Designed user flow for the centralized access experience','Coordinated integration across multiple internal applications','Led UAT and ensured role-based access control validation','Managed rollout planning and stakeholder alignment'],
-      id:['Mendefinisikan visi produk dan pendekatan arsitektur sistem','Mengumpulkan dan menerjemahkan kebutuhan bisnis menjadi fitur sistem','Merancang alur pengguna untuk pengalaman akses terpusat','Mengkoordinasikan integrasi lintas aplikasi internal','Memimpin UAT dan memvalidasi kontrol akses berbasis peran','Mengelola perencanaan peluncuran dan penyelarasan pemangku kepentingan']
+      en:['Defined the product vision and system architecture direction','Turned business requirements into concrete system features','Designed the full user flow for centralized access','Coordinated app integrations across the organization','Led UAT — made sure role-based access actually worked','Managed rollout and kept stakeholders aligned throughout'],
+      id:['Menentukan konsep produk dan arah sistemnya','Mengubah kebutuhan bisnis menjadi fitur yang jelas','Merancang alur akses yang terpusat untuk pengguna','Mengatur integrasi antar aplikasi di seluruh organisasi','Memimpin pengujian untuk memastikan akses berjalan sesuai peran','Mengelola peluncuran dan menjaga semua pihak tetap sejalan']
     },
     impact: {
-      en:['Simplified access to all enterprise applications from a single entry point','Reduced login friction and improved user productivity','Established centralized governance for application access control'],
-      id:['Menyederhanakan akses ke semua aplikasi enterprise dari satu titik masuk','Mengurangi hambatan login dan meningkatkan produktivitas pengguna','Menetapkan tata kelola terpusat untuk kontrol akses aplikasi']
+      en:['One login to access everything — no more jumping between apps','Less friction, more productive users','Full control over who accesses what, centralized in one place'],
+      id:['Cukup satu login untuk mengakses semua aplikasi','Proses login lebih mudah dan tim jadi lebih produktif','Kontrol akses sepenuhnya terpusat di satu tempat']
     },
     tags:['SSO','RBAC','Access Management','UAT','Enterprise Integration','Stakeholder Management'],
   },
@@ -609,16 +650,16 @@ const data = [
     eyebrow: { en:'Pertamina · IT Project Manager', id:'Pertamina · IT Project Manager' },
     title: 'Investment Information System',
     desc: {
-      en:'Investment and project portfolio data were scattered across multiple subholdings, making executive reporting inconsistent. I led the build of a centralized investment monitoring system to consolidate, standardize, and visualize this data for decision-makers.',
-      id:'Data portofolio investasi tersebar di berbagai subholding sehingga pelaporan eksekutif tidak konsisten. Saya memimpin pembangunan sistem pemantauan investasi terpusat untuk mengkonsolidasikan, menstandarisasi, dan memvisualisasikan data bagi para pengambil keputusan.'
+      en:'Data investasi tersebar di berbagai subholding dan laporannya nggak konsisten. Saya bangun sistem monitoring terpusat untuk beresin itu — konsolidasi data, standarisasi laporan, dan visualisasi yang bisa langsung dibaca eksekutif.',
+      id:'Data investasi tersebar di banyak anak perusahaan, jadi laporan untuk pimpinan sering tidak konsisten. Saya memimpin pembuatan sistem pemantauan terpusat yang merapikan, menyeragamkan, dan menampilkan data itu untuk para pengambil keputusan.'
     },
     contributions: {
-      en:['Led requirement gathering with PMO and finance stakeholders','Defined acceptance criteria and supported system design decisions','Coordinated data integration across multiple subholding entities','Managed UAT, defect tracking, and release readiness','Supported go-live execution and user documentation'],
-      id:['Memimpin pengumpulan kebutuhan bersama pemangku kepentingan PMO dan keuangan','Mendefinisikan kriteria penerimaan dan mendukung keputusan desain sistem','Mengkoordinasikan integrasi data lintas entitas subholding','Mengelola UAT, pelacakan defect, dan kesiapan rilis','Mendukung pelaksanaan go-live dan dokumentasi pengguna']
+      en:['Ran requirement gathering with PMO and finance teams','Set acceptance criteria and helped shape system design','Coordinated data integration across multiple subholdings','Managed UAT, tracked defects, and confirmed release readiness','Supported go-live and made sure users had proper documentation'],
+      id:['Menggali kebutuhan bersama tim PMO dan Keuangan','Menentukan standar penerimaan dan membantu merancang sistem','Mengatur penggabungan data dari berbagai anak perusahaan','Mengelola pengujian, menelusuri kendala, dan memastikan sistem siap rilis','Mendampingi peluncuran dan menyiapkan panduan untuk pengguna']
     },
     impact: {
-      en:['Faster and more reliable reporting for executive decision-making','Improved portfolio visibility across all subholdings','Standardized investment data structure across entities'],
-      id:['Pelaporan yang lebih cepat dan andal untuk pengambilan keputusan eksekutif','Peningkatan visibilitas portofolio di seluruh subholding','Standarisasi struktur data investasi lintas entitas']
+      en:['Faster, more reliable reports for executive decisions','Clear portfolio visibility across all subholdings','Investment data structure finally standardized across entities'],
+      id:['Laporan untuk pimpinan jadi lebih cepat dan bisa diandalkan','Gambaran portofolio jelas di semua anak perusahaan','Data investasi akhirnya tersusun seragam di semua unit']
     },
     tags:['Investment Platform','BI Dashboard','Data Integration','PMO','Finance','Reporting'],
   },
@@ -626,16 +667,16 @@ const data = [
     eyebrow: { en:'Angkasa Pura Indonesia · IT Project Manager', id:'Angkasa Pura Indonesia · IT Project Manager' },
     title: 'Culture Management System',
     desc: {
-      en:'A centralized platform for managing and monitoring cultural programs and HR initiatives across all branches. Includes multi-level approval workflows, submission tracking, and reporting to improve governance of company culture activities.',
-      id:'Platform terpusat untuk mengelola dan memantau program budaya serta inisiatif SDM di seluruh cabang. Dilengkapi alur persetujuan bertingkat, pelacakan pengajuan, dan pelaporan untuk meningkatkan tata kelola kegiatan budaya perusahaan.'
+      en:'Cultural programs were managed manually and separately per branch — no unified view. Built a platform to centralize submissions, approvals, and reporting in one place.',
+      id:'Program budaya dikelola manual dan terpisah per cabang — nggak ada gambaran yang terpadu. Dibangun platform untuk sentralisasi pengajuan, persetujuan, dan pelaporan dalam satu tempat.'
     },
     contributions: {
-      en:['Gathered requirements from HR and branch coordinators','Designed approval workflow logic and escalation paths','Coordinated system development and integration with HR data','Managed UAT with branch-level stakeholders'],
-      id:['Mengumpulkan kebutuhan dari koordinator HR dan cabang','Merancang logika alur persetujuan dan jalur eskalasi','Mengkoordinasikan pengembangan sistem dan integrasi data HR','Mengelola UAT bersama pemangku kepentingan tingkat cabang']
+      en:['Collected requirements from HR and branch coordinators','Designed the approval flow and escalation logic','Coordinated system development and HR data integration','Ran UAT with branch-level stakeholders'],
+      id:['Mengumpulkan kebutuhan dari tim HR dan koordinator cabang','Merancang alur persetujuan beserta tahapannya','Mengatur pengembangan sistem dan penggabungan data HR','Memimpin pengujian bersama perwakilan dari tiap cabang']
     },
     impact: {
-      en:['Centralized visibility into cultural programs across all branches','Reduced manual coordination and improved governance','Enabled structured reporting for HR leadership'],
-      id:['Visibilitas terpusat atas program budaya di seluruh cabang','Mengurangi koordinasi manual dan meningkatkan tata kelola','Memungkinkan pelaporan terstruktur untuk pimpinan HR']
+      en:['All cultural programs visible in one dashboard across branches','Less back-and-forth, cleaner governance','HR leadership now has structured reports instead of scattered updates'],
+      id:['Semua program budaya terlihat dalam satu tampilan untuk semua cabang','Koordinasi manual berkurang banyak dan pengelolaan jadi lebih rapi','Pimpinan HR kini punya laporan yang tersusun, bukan kabar yang tersebar']
     },
     tags:['HR System','Workflow Automation','Multi-branch','Approval Flow','Reporting'],
   },
@@ -643,16 +684,16 @@ const data = [
     eyebrow: { en:'Pertamina · IT Project Manager', id:'Pertamina · IT Project Manager' },
     title: 'Monitoring & Evaluation System',
     desc: {
-      en:'A system for standardizing KPI tracking and ROI reporting — replacing fragmented, manual evaluation processes with a structured, reliable system that gives leadership accurate project performance insights.',
-      id:'Sistem untuk menstandarisasi pelacakan KPI dan pelaporan ROI — menggantikan proses evaluasi manual yang terfragmentasi dengan sistem terstruktur yang memberikan wawasan kinerja proyek yang akurat bagi pimpinan.'
+      en:'KPI tracking was done manually and inconsistently. Built a structured system so leadership always has an accurate, up-to-date view of project performance and ROI.',
+      id:'Pelacakan KPI dilakukan manual dan nggak konsisten. Dibangun sistem terstruktur biar pimpinan selalu punya gambaran akurat soal kinerja proyek dan ROI.'
     },
     contributions: {
-      en:['Defined KPI structure and reporting logic with finance teams','Managed requirement gathering and system scoping','Coordinated development and data validation','Led UAT and acceptance sign-off with stakeholders'],
-      id:['Mendefinisikan struktur KPI dan logika pelaporan bersama tim keuangan','Mengelola pengumpulan kebutuhan dan pelingkupan sistem','Mengkoordinasikan pengembangan dan validasi data','Memimpin UAT dan penandatanganan penerimaan bersama pemangku kepentingan']
+      en:['Defined KPI structure and reporting logic with the finance team','Led requirement gathering and system scoping','Coordinated development and data validation','Led UAT and got stakeholder sign-off'],
+      id:['Menyusun struktur KPI dan cara pelaporannya bersama tim Keuangan','Memimpin penggalian kebutuhan dan menentukan cakupan sistem','Mengatur pengembangan dan pemeriksaan data','Memimpin pengujian dan mendapatkan persetujuan akhir']
     },
     impact: {
-      en:['Standardized financial evaluation methodology across projects','Improved accuracy of project performance reporting','Reduced manual effort in generating KPI reports'],
-      id:['Metodologi evaluasi keuangan yang terstandarisasi lintas proyek','Peningkatan akurasi pelaporan kinerja proyek','Pengurangan upaya manual dalam pembuatan laporan KPI']
+      en:['Standardized how projects are financially evaluated — no more inconsistencies','More accurate performance reporting across the board','KPI reports now generated by the system, not manually'],
+      id:['Cara menilai keuangan proyek kini seragam dan konsisten','Laporan kinerja jadi lebih akurat di semua tingkatan','Laporan KPI dibuat otomatis oleh sistem, bukan lagi manual']
     },
     tags:['KPI Tracking','ROI Reporting','Finance','Performance Management'],
   },
@@ -660,16 +701,16 @@ const data = [
     eyebrow: { en:'Angkasa Pura Indonesia · IT Project Manager', id:'Angkasa Pura Indonesia · IT Project Manager' },
     title: 'Naskah Dinas System',
     desc: {
-      en:'A document management and approval system aligned with government compliance standards — replacing manual document handling with structured digital workflows, ensuring audit trails and proper archiving.',
-      id:'Sistem manajemen dokumen dan persetujuan yang sesuai standar kepatuhan pemerintah — menggantikan penanganan dokumen manual dengan alur kerja digital terstruktur, memastikan jejak audit dan pengarsipan yang tepat.'
+      en:'Official documents were handled manually — slow, prone to errors, and hard to trace. Built a digital system with structured approval flows and full audit trail.',
+      id:'Dokumen resmi diurus manual — lambat, rawan salah, susah dilacak. Dibangun sistem digital dengan alur persetujuan terstruktur dan jejak audit yang penuh.'
     },
     contributions: {
-      en:['Translated compliance requirements into system features','Designed document workflow and approval chain','Coordinated development and integration with existing systems','Led user testing and ensured compliance validation'],
-      id:['Menerjemahkan persyaratan kepatuhan menjadi fitur sistem','Merancang alur dokumen dan rantai persetujuan','Mengkoordinasikan pengembangan dan integrasi dengan sistem yang ada','Memimpin pengujian pengguna dan memastikan validasi kepatuhan']
+      en:['Converted compliance requirements into actual system features','Designed the document flow and approval chain','Coordinated development and integration with existing systems','Led user testing and validated compliance'],
+      id:['Mengubah aturan kepatuhan menjadi fitur sistem yang nyata','Merancang alur dokumen beserta urutan persetujuannya','Mengatur pengembangan dan penggabungan dengan sistem yang sudah ada','Memimpin pengujian dan memastikan sesuai aturan']
     },
     impact: {
-      en:['Improved document traceability and audit readiness','Reduced processing time for official correspondence','Ensured compliance with organizational standards'],
-      id:['Peningkatan keterlacakan dokumen dan kesiapan audit','Pengurangan waktu pemrosesan surat resmi','Memastikan kepatuhan terhadap standar organisasi']
+      en:['Documents are now fully traceable — audit-ready at any time','Processing time for official correspondence cut significantly','Compliant with organizational standards throughout'],
+      id:['Setiap dokumen kini bisa dilacak dan siap diaudit kapan saja','Waktu pengurusan surat resmi jadi jauh lebih singkat','Sesuai standar dan aturan organisasi dari awal sampai akhir']
     },
     tags:['Document Management','Compliance','Audit Trail','Workflow','Approval System'],
   },
@@ -677,67 +718,67 @@ const data = [
     eyebrow: { en:'Angkasa Pura Indonesia · IT Project Manager', id:'Angkasa Pura Indonesia · IT Project Manager' },
     title: 'DevOps Platform (Initial Phase)',
     desc: {
-      en:'An initial DevOps platform establishing the foundation for structured project lifecycle management — covering documentation standards (KOM, Project Charter, PIR) and payment process tracking as groundwork for future automation.',
-      id:'Platform DevOps awal yang meletakkan fondasi manajemen siklus hidup proyek yang terstruktur — mencakup standar dokumentasi (KOM, Project Charter, PIR) dan pelacakan proses pembayaran sebagai dasar otomasi di masa mendatang.'
+      en:'Set up the foundational DevOps platform — standardized project documentation (KOM, Charter, PIR) and payment tracking. Groundwork for bigger automation later.',
+      id:'Setup platform DevOps awal — standarisasi dokumentasi proyek (KOM, Charter, PIR) dan tracking pembayaran. Fondasi untuk otomasi yang lebih besar ke depannya.'
     },
     contributions: {
-      en:['Scoped the initial phase and defined platform boundaries','Standardized project documentation templates and workflows','Coordinated setup of lifecycle tracking modules','Managed stakeholder alignment on process standards'],
-      id:['Melingkupi fase awal dan mendefinisikan batasan platform','Menstandarisasi template dokumentasi proyek dan alur kerja','Mengkoordinasikan pengaturan modul pelacakan siklus hidup','Mengelola penyelarasan pemangku kepentingan pada standar proses']
+      en:['Scoped the initial phase and set clear platform boundaries','Standardized documentation templates and project workflows','Coordinated setup of lifecycle tracking modules','Got stakeholders aligned on process standards'],
+      id:['Menentukan cakupan dan batasan platform di tahap awal','Merapikan format dokumentasi dan alur kerja proyek','Mengatur penyiapan modul pemantauan tahapan proyek','Memastikan semua pihak sepakat soal standar prosesnya']
     },
     impact: {
-      en:['Established a consistent documentation and tracking baseline','Reduced ad-hoc process variation across IT projects','Built the foundation for future DevOps automation'],
-      id:['Menetapkan baseline dokumentasi dan pelacakan yang konsisten','Mengurangi variasi proses ad-hoc lintas proyek IT','Membangun fondasi untuk otomasi DevOps di masa depan']
+      en:['Consistent documentation and tracking baseline across all projects','Less ad-hoc variation — teams now follow a standard process','Foundation in place for future DevOps automation'],
+      id:['Dokumentasi dan pemantauan jadi seragam di semua proyek','Cara kerja yang berbeda-beda berkurang karena tim mengikuti satu standar','Fondasi untuk otomasi ke depan sudah tersedia']
     },
     tags:['DevOps','Project Lifecycle','Documentation','Process Standardization'],
   },
   {
-    eyebrow: { en:'PT. Kreasi Teknodigital Indonesia · IT Project Manager', id:'PT. Kreasi Teknodigital Indonesia · IT Project Manager' },
+    eyebrow: { en:'IT Project Manager', id:'IT Project Manager' },
     title: 'Mumble — Anonymous Chat Platform',
     desc: {
-      en:'The client needed a complete mobile application for an anonymous chat platform, built entirely from scratch. I led end-to-end project delivery — approaching this as a full product definition, system design, and delivery governance challenge spanning business documentation, technical analysis, and UX wireframing.',
-      id:'Klien membutuhkan aplikasi mobile lengkap untuk platform chat anonim, dibangun dari nol tanpa sistem yang ada. Saya memimpin pengiriman proyek end-to-end — mendekati ini sebagai tantangan pendefinisian produk, desain sistem, dan tata kelola pengiriman yang mencakup dokumentasi bisnis, analisis teknis, dan wireframing UX.'
+      en:'Client came in with just an idea — no system, no docs, nothing. I built the foundation: product vision, SOW, system flows, and a phased delivery roadmap. All before a single line of code.',
+      id:'Klien datang hanya dengan ide, tanpa sistem maupun dokumen apa pun. Saya susun fondasinya: konsep produk, dokumen kerja, alur sistem, dan rencana pengerjaan bertahap. Semua disiapkan sebelum pengembangan dimulai.'
     },
     contributions: {
-      en:['Defined product vision, feature scope, and three-tier packaging strategy (Basic, Core, Enterprise)','Facilitated discovery sessions and translated business needs into 13 structured system modules','Produced a comprehensive business proposal with investment estimation and milestone-based delivery planning','Authored a full SOW with 46 technical line items across UI/UX, Front End, and Back End','Designed 13 end-to-end system flows covering auth, content moderation, token economy, and multi-role admin','Led UI/UX wireframing across 31 screens from onboarding to payment','Structured an 8-milestone delivery roadmap within 8–12 weeks','Coordinated vendor alignment and ensured all documentation was ready before development kickoff'],
-      id:['Mendefinisikan visi produk, cakupan fitur, dan strategi paket tiga tingkat (Basic, Core, Enterprise)','Memfasilitasi sesi penemuan dan menerjemahkan kebutuhan bisnis menjadi 13 modul sistem terstruktur','Menyusun proposal bisnis komprehensif dengan estimasi investasi dan perencanaan pengiriman berbasis milestone','Menyusun SOW lengkap dengan 46 item teknis lintas UI/UX, Front End, dan Back End','Merancang 13 alur sistem end-to-end mencakup autentikasi, moderasi konten, token economy, dan admin multi-peran','Memimpin wireframing UI/UX untuk 31 layar dari onboarding hingga pembayaran','Menyusun peta jalan 8 milestone dalam 8–12 minggu','Mengkoordinasikan penyelarasan vendor dan memastikan semua dokumentasi siap sebelum kickoff pengembangan']
+      en:['Set the product vision, feature scope, and a 3-tier packaging strategy (Basic, Core, Enterprise)','Ran discovery sessions and turned business needs into clear, structured system parts','Wrote a full business proposal — investment estimate, benefit breakdown, milestone plan','Authored a detailed SOW split across UI/UX, Front End, and Back End','Mapped out the core system flows: auth, content moderation, token economy, multi-role admin','Coordinated with the design team on the user journey, from onboarding to payment','Built a phased roadmap for an 8–12 week delivery','Locked in vendor alignment and had all docs ready before dev kickoff'],
+      id:['Menentukan konsep produk, daftar fitur, dan tiga pilihan paket (Basic, Core, Enterprise)','Menggali kebutuhan dan menyusunnya menjadi bagian-bagian sistem yang rapi','Menyusun proposal bisnis lengkap: perkiraan biaya, manfaat, dan rencana pengerjaan','Membuat dokumen kerja yang rinci untuk tim Desain, Front End, dan Back End','Memetakan alur utama sistem: login, moderasi konten, sistem token, dan akses admin','Berkoordinasi dengan tim desain soal alur pengguna, dari pendaftaran sampai pembayaran','Menyusun rencana pengerjaan bertahap dalam 8–12 minggu','Menyatukan vendor dan memastikan semua dokumen siap sebelum mulai']
     },
     impact: {
-      en:['Client received a complete development-ready package — from business proposal to technical wireframes — in a single engagement','Eliminated pre-development ambiguity through a clearly scoped SOW with per-milestone acceptance criteria','Established a scalable monetization framework via Pop Token system','Reduced stakeholder back-and-forth through unified business, technical, and design documentation'],
-      id:['Klien menerima paket siap pengembangan lengkap — dari proposal bisnis hingga wireframe teknis — dalam satu engagement','Menghilangkan ambiguitas pra-pengembangan melalui SOW yang jelas dengan kriteria penerimaan per milestone','Membangun kerangka monetisasi skalabel melalui sistem Pop Token','Mengurangi bolak-balik pemangku kepentingan melalui dokumentasi bisnis, teknis, dan desain yang terpadu']
+      en:['Client walked away with a full dev-ready package — from business proposal to wireframes — in one engagement','Zero ambiguity for the dev team: every milestone had clear scope and acceptance criteria','Built a scalable monetization framework with the Pop Token system','One unified doc package cut down stakeholder back-and-forth significantly'],
+      id:['Klien langsung dapat paket lengkap, dari proposal bisnis sampai desain, dalam satu kali kerja sama','Tim pengembang punya panduan jelas: tiap tahap punya cakupan dan standarnya','Sistem monetisasi lewat Pop Token sudah dirancang dan siap dikembangkan','Satu paket dokumen yang rapi memangkas banyak diskusi bolak-balik']
     },
     tags:['Product Scoping','System Analysis','SOW & Documentation','Milestone Planning','UI/UX Wireframing','Token Economy','Mobile App','Multi-Role Access','Vendor Coordination'],
   },
   {
-    eyebrow: { en:'PT. Kreasi Teknodigital Indonesia · Project Manager', id:'PT. Kreasi Teknodigital Indonesia · Project Manager' },
+    eyebrow: { en:'Project Manager', id:'Project Manager' },
     title: 'Tokoperasi — Hyperlocal UMKM Marketplace',
     desc: {
-      en:'Tokoperasi is a hyperlocal UMKM transaction digitalization initiative connecting buyers with the nearest sellers. I led full planning and system analysis from scratch — from identifying pain points to defining end-to-end flows for 12 core modules covering transactions, delivery, and administration.',
-      id:'Tokoperasi adalah inisiatif digitalisasi transaksi UMKM berbasis hyperlocal yang menghubungkan pembeli dengan penjual terdekat. Saya memimpin perencanaan dan analisis sistem penuh dari nol — mulai dari mengidentifikasi masalah hingga mendefinisikan alur end-to-end untuk 12 modul inti yang mencakup transaksi, pengiriman, dan administrasi.'
+      en:'UMKM transactions were still largely manual and undigitized. I planned the full system from scratch — covering how buyers find sellers nearby, check out, pay, and get their orders delivered.',
+      id:'Transaksi UMKM masih banyak yang manual dan belum digital. Saya rancang sistemnya dari nol, mencakup cara pembeli menemukan penjual terdekat, belanja, bayar, sampai pesanan diterima.'
     },
     contributions: {
-      en:['Conducted discovery sessions to identify pain points in the existing system','Defined system actors (Admin, UMKM, Buyer) and mapped role-based access for all 12 modules','Authored the full Feature Analysis Document covering functional requirements and system behavior','Designed Cart & Checkout and Payment Gateway integration flows','Specified hyperlocal location-based store system using GPS and Haversine distance calculation','Defined UMKM registration and admin verification workflow','Designed Internal Delivery System with courier status tracking','Mapped notification triggers across all transaction events for Email and WhatsApp','Established transaction governance rules to prevent off-platform deals'],
-      id:['Melakukan sesi penemuan untuk mengidentifikasi titik masalah dalam sistem yang ada','Mendefinisikan aktor sistem (Admin, UMKM, Pembeli) dan memetakan akses berbasis peran untuk 12 modul','Menyusun Dokumen Analisis Fitur lengkap mencakup kebutuhan fungsional dan perilaku sistem','Merancang alur Cart & Checkout dan integrasi Payment Gateway','Menentukan sistem toko berbasis lokasi hyperlocal menggunakan GPS dan kalkulasi jarak Haversine','Mendefinisikan alur pendaftaran UMKM dan verifikasi admin','Merancang Sistem Pengiriman Internal dengan pelacakan status kurir','Memetakan pemicu notifikasi di seluruh event transaksi untuk Email dan WhatsApp','Menetapkan aturan tata kelola transaksi untuk mencegah transaksi di luar platform']
+      en:['Ran discovery sessions to surface pain points in the current system','Mapped out system roles (Admin, UMKM, Buyer) and their access across all parts of the system','Wrote the full Feature Analysis Document — requirements and system behavior per module','Designed Cart & Checkout and Payment Gateway integration flows','Specced the GPS-based hyperlocal store discovery using Haversine distance calculation','Defined UMKM registration and admin verification workflow','Built out the Internal Delivery System flow with courier status tracking','Mapped notification triggers for all transaction events across Email and WhatsApp','Set transaction governance rules to block off-platform deals'],
+      id:['Menggali masalah yang ada di sistem yang berjalan saat ini','Menentukan peran pengguna (Admin, UMKM, Pembeli) dan hak aksesnya di semua bagian sistem','Menyusun dokumen analisis fitur lengkap untuk tiap bagian sistem','Merancang alur keranjang, pembayaran, dan integrasinya','Merancang sistem pencarian toko terdekat berdasarkan lokasi','Menentukan alur pendaftaran UMKM dan verifikasi oleh admin','Membuat alur pengiriman lengkap dengan pelacakan status kurir','Mengatur notifikasi untuk setiap transaksi lewat Email dan WhatsApp','Menyusun aturan agar semua transaksi tetap berjalan di dalam platform']
     },
     impact: {
-      en:['Delivered a structured 13-module feature analysis document as the technical roadmap for full development','Reduced ambiguity — each module documented with requirements, system behavior, and actor flows','Established a scalable hyperlocal marketplace architecture supporting multi-UMKM and multi-buyer','Created a self-sufficient UMKM onboarding flow requiring zero developer intervention post-launch'],
-      id:['Menghasilkan dokumen analisis fitur 13 modul terstruktur sebagai peta jalan teknis pengembangan penuh','Mengurangi ambiguitas — setiap modul didokumentasikan dengan kebutuhan, perilaku sistem, dan alur aktor','Membangun arsitektur marketplace hyperlocal yang skalabel mendukung multi-UMKM dan multi-pembeli','Menciptakan alur onboarding UMKM mandiri tanpa intervensi developer setelah peluncuran']
+      en:['Delivered a complete feature analysis doc that became the dev team\'s technical roadmap','No guesswork — every part has its requirements, system behavior, and user flows documented','Scalable marketplace that handles multiple UMKMs and buyers with location-based search','UMKM onboarding is self-serve — no developer help needed after launch'],
+      id:['Menghasilkan dokumen analisis lengkap yang jadi panduan kerja tim pengembang','Setiap bagian punya dokumentasi yang jelas, jadi tidak ada yang ditebak-tebak','Sistem yang dirancang mampu menampung banyak UMKM dan pembeli dengan pencarian berdasarkan lokasi','Pendaftaran UMKM bisa dilakukan mandiri tanpa bantuan pengembang setelah rilis']
     },
     tags:['Hyperlocal Marketplace','UMKM Digitalization','Payment Gateway','System Architecture','Feature Analysis','GPS & Location','Delivery System'],
   },
   {
-    eyebrow: { en:'PT. Kreasi Teknodigital Indonesia · IT Project Manager', id:'PT. Kreasi Teknodigital Indonesia · IT Project Manager' },
+    eyebrow: { en:'IT Project Manager', id:'IT Project Manager' },
     title: 'Geoaccess LMS — Platform Redesign & Feature Development',
     desc: {
-      en:'Geoaccess is an online geoscience education platform facing structural problems: a friction-heavy purchase flow, full reliance on email post-payment, course pages not supporting fast buying decisions, and many manual processes not ready to scale. I led the entire planning and documentation process — from system problem analysis to a technically executable scope.',
-      id:'Geoaccess adalah platform edukasi geosains online yang menghadapi masalah struktural: alur pembelian yang berfriksi tinggi, ketergantungan penuh pada email pasca-pembayaran, halaman kursus yang tidak mendukung keputusan beli cepat, dan banyak proses manual yang belum siap untuk skala lebih besar. Saya memimpin seluruh proses perencanaan dan dokumentasi — dari analisis masalah sistem hingga cakupan yang siap dieksekusi secara teknis.'
+      en:'The platform had real conversion problems — buying a course required logging in first, post-payment was all manual via email, and the course pages weren\'t helping people decide. I led the full planning and documentation overhaul to fix all of that.',
+      id:'Platform punya masalah konversi yang nyata — beli kursus harus login dulu, pasca-pembayaran masih manual lewat email, dan halaman kursus nggak bantu orang buat keputusan. Saya pimpin overhaul perencanaan dan dokumentasi penuh untuk beresin semua itu.'
     },
     contributions: {
-      en:['Authored a 12-module Feature Analysis Document mapping system behavior changes, actor flows, and feature dependencies','Identified and defined 13 add-on features from client feedback with priorities and categories','Produced a development proposal with technical breakdown per division (UI/UX, Front End, Back End) and 3 service package schemes','Authored SOW per feature with deliverables, acceptance criteria, and scope boundaries','Mapped technical flows for all core modules including guest checkout, payment gateway, auto enrollment, course page redesign, and admin config panel','Defined measurable acceptance criteria for every feature as QA and handover standard','Coordinated with design team on UI reference and tutor profile deliverables'],
-      id:['Menyusun Dokumen Analisis Fitur 12 modul yang memetakan perubahan perilaku sistem, alur aktor, dan dependensi fitur','Mengidentifikasi dan mendefinisikan 13 fitur add-on dari ulasan feedback klien dengan prioritas dan kategori','Menyusun proposal pengembangan dengan rincian teknis per divisi (UI/UX, Front End, Back End) dan 3 skema paket layanan','Menyusun SOW per fitur dengan deliverables, kriteria penerimaan, dan batasan cakupan','Memetakan alur teknis semua modul inti termasuk guest checkout, payment gateway, pendaftaran otomatis, redesain halaman kursus, dan panel konfigurasi admin','Mendefinisikan kriteria penerimaan terukur untuk setiap fitur sebagai standar QA dan serah terima','Berkoordinasi dengan tim desain tentang referensi UI dan deliverables profil tutor']
+      en:['Wrote a full Feature Analysis Document — system behavior changes, user flows, and feature dependencies mapped out','Identified add-on features from client feedback, each with priority and category assigned','Built the development proposal: technical breakdown per team (UI/UX, FE, BE) and several service package options','Authored an SOW per feature — deliverables, acceptance criteria, and scope limits clearly stated','Mapped flows for all core parts: guest checkout, payment, auto enrollment, course page redesign, admin panel','Set measurable acceptance criteria per feature — used as the QA and handover standard','Coordinated UI references and tutor profile deliverables with the design team'],
+      id:['Menyusun dokumen analisis fitur lengkap, beserta alur dan keterkaitannya','Menentukan fitur-fitur tambahan dari masukan klien beserta prioritasnya','Membuat proposal pengembangan dengan rincian per tim dan beberapa pilihan paket layanan','Menyusun dokumen kerja tiap fitur, lengkap dengan hasil dan standar penyelesaiannya','Memetakan alur semua bagian utama: pembelian tanpa login, pembayaran, pendaftaran otomatis, dan halaman kursus','Menentukan standar penyelesaian yang terukur untuk tiap fitur','Berkoordinasi dengan tim desain soal tampilan dan halaman profil pengajar']
     },
     impact: {
-      en:['All unstructured system problems defined into 12 analysis modules and 13 feature scopes ready for sprint development','Proposal and SOW became official reference documents minimizing miscommunication between client and dev team','Three technical divisions have clear, separate per-feature work guides','Purchase flow redesigned from login-required to minimal-form guest checkout — reducing friction at the most critical conversion point'],
-      id:['Semua masalah sistem yang tidak terstruktur didefinisikan menjadi 12 modul analisis dan 13 cakupan fitur siap sprint development','Proposal dan SOW menjadi dokumen acuan resmi yang meminimalisir risiko miskomunikasi antara klien dan tim development','Tiga divisi teknis memiliki panduan kerja yang jelas dan terpisah per fitur','Alur pembelian dirancang ulang dari login-required menjadi guest checkout dengan form minimal — mengurangi hambatan di titik konversi paling kritis']
+      en:['Every system problem is now clearly defined and ready to build','Proposal and SOW serve as the official reference — miscommunication between client and dev team is cut significantly','Each team (UI/UX, FE, BE) has its own clear work guide per feature','Purchase flow goes from login-required to a quick guest checkout — friction at the most critical step is gone'],
+      id:['Semua masalah sistem sudah terdefinisi rapi dan siap dikerjakan','Proposal dan dokumen kerja jadi acuan resmi, sehingga salah paham antara klien dan tim berkurang','Tiap tim punya panduan kerja yang jelas untuk setiap fitur','Pembelian tidak lagi mengharuskan login dan cukup isi form singkat, sehingga calon pembeli tidak mudah kabur']
     },
     tags:['LMS','Business Analysis','Feature Planning','Scope of Work','PRD','Guest Checkout','Payment Gateway','UX Flow','Agile Backlog'],
   },
